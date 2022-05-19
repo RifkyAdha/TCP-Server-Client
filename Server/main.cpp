@@ -34,13 +34,18 @@ void main()
 	hint.sin_addr.S_un.S_addr = INADDR_ANY; //also can use inet_pton
 
 	if (bind(listening, (sockaddr*)&hint, sizeof(hint)) != 0)
+	{
 		cout << "Error Binding" << endl;
-
+	}
 	//tell winsock the socket is for listening
 	if (listen(listening, SOMAXCONN) != 0)
+	{
 		cout << "Error Listening" << endl;
+	}
 	else
+	{
 		cout << "Server is Listening" << endl;
+	}
 
 	//wait for a connection
 	sockaddr_in client;
