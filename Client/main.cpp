@@ -50,7 +50,7 @@ void main()
 	string userInput;
 	do
 	{
-		//prompt the user for some text
+		//input chat
 		cout << "- ";
 		getline(cin, userInput);
 
@@ -66,7 +66,7 @@ void main()
 				if (bytesReceived > 0)
 				{
 					//echo response to console
-					cout << "SERVER > " << string(buf, 0, bytesReceived) << endl;
+					cout << "SERVER> " << string(buf, 0, bytesReceived) << endl;
 				}
 				
 			}

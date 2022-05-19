@@ -1,5 +1,7 @@
 #include <iostream>
 #include <WS2tcpip.h>
+#include<string>
+#include<string.h>
 #pragma comment (lib, "ws2_32.lib")
 
 using namespace std;
@@ -62,13 +64,15 @@ void main()
 	}
 	//close listening socket
 	closesocket(listening);
-	//while loop : accept and echo message back to client
+	//while loop : accept and response message back to client
 	char buf[4096];
+	string userInput;
 	while (true)
 	{
 		ZeroMemory(buf, 4096);
 		// wait for client
 		int bytesReceived = recv(clientSocket, buf, 4096, 0);
+		cout << "Client> ";
 		if (bytesReceived == SOCKET_ERROR)
 		{
 			cout << "Error in recv(). Quitting " << endl;
@@ -80,8 +84,10 @@ void main()
 			break;
 		}
 		cout << string(buf, 0, bytesReceived)<<endl;
-		//echo message back to client
-		send(clientSocket, buf, bytesReceived + 1, 0);
+		//response message back to client
+		cout << "> ";
+		getline(cin, userInput);
+		send(clientSocket, userInput.c_str(), bytesReceived + 1, 0);
 
 	}
 
